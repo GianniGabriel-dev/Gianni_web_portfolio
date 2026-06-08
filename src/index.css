@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* ── Color tokens ─────────────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --color-bg:           #ffffff;
+  --color-bg-subtle:    #f8f7f4;
+  --color-bg-card:      #ffffff;
+
+  /* Surfaces / borders */
+  --color-border:       #e5e4e7;
+  --color-border-strong:#c9c8cc;
+
+  /* Text */
+  --color-text:         #6b6375;
+  --color-text-strong:  #08060d;
+  --color-text-muted:   #9ca3af;
+
+  /* Accent (purple) */
+  --color-accent:       #aa3bff;
+  --color-accent-hover: #8b2de0;
+  --color-accent-subtle:rgba(170, 59, 255, 0.10);
+  --color-accent-border:rgba(170, 59, 255, 0.50);
+
+  /* Code blocks */
+  --color-code-bg:      #f4f3ec;
+
+  /* Shadows */
+  --shadow-sm: rgba(0,0,0,.08) 0 1px 3px;
+  --shadow-md: rgba(0,0,0,.10) 0 10px 15px -3px, rgba(0,0,0,.05) 0 4px 6px -2px;
+
+  /* Typography */
+  --font-sans:  system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:  ui-monospace, Consolas, monospace;
+
+  /* Expose tokens to Tailwind's theme via @theme inline */
+  @theme inline {
+    --color-bg:           var(--color-bg);
+    --color-bg-subtle:    var(--color-bg-subtle);
+    --color-bg-card:      var(--color-bg-card);
+    --color-border:       var(--color-border);
+    --color-border-strong:var(--color-border-strong);
+    --color-text:         var(--color-text);
+    --color-text-strong:  var(--color-text-strong);
+    --color-text-muted:   var(--color-text-muted);
+    --color-accent:       var(--color-accent);
+    --color-accent-hover: var(--color-accent-hover);
+    --color-accent-subtle:var(--color-accent-subtle);
+    --color-code-bg:      var(--color-code-bg);
+  }
+}
+
+/* ── Dark mode overrides ──────────────────────────────────────────────────── */
+.dark {
+  --color-bg:           #16171d;
+  --color-bg-subtle:    #1f2028;
+  --color-bg-card:      #1f2028;
+
+  --color-border:       #2e303a;
+  --color-border-strong:#3d3f4d;
+
+  --color-text:         #9ca3af;
+  --color-text-strong:  #f3f4f6;
+  --color-text-muted:   #6b7280;
+
+  --color-accent:       #c084fc;
+  --color-accent-hover: #a855f7;
+  --color-accent-subtle:rgba(192, 132, 252, 0.15);
+  --color-accent-border:rgba(192, 132, 252, 0.50);
+
+  --color-code-bg:      #1f2028;
+
+  --shadow-md: rgba(0,0,0,.40) 0 10px 15px -3px, rgba(0,0,0,.25) 0 4px 6px -2px;
+}
+
+/* ── Base styles ──────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.2s, color 0.2s;
+}
