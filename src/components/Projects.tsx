@@ -1,14 +1,17 @@
+import { useLanguage } from "../context/LanguageContext"
+
 const PROJECTS = [
-  { title: 'Project one', description: 'Short description of what this project does.', tags: ['React', 'TypeScript'] },
-  { title: 'Project two', description: 'Short description of what this project does.', tags: ['Node', 'PostgreSQL'] },
-  { title: 'Project three', description: 'Short description of what this project does.', tags: ['Next.js', 'Tailwind'] },
+  { title: 'Project one', tags: ['React', 'TypeScript'] },
+  { title: 'Project two', tags: ['Node', 'PostgreSQL'] },
+  { title: 'Project three', tags: ['Next.js', 'Tailwind'] },
 ]
 
 export function Projects() {
+  const { t } = useLanguage()
   return (
     <section id="projects" className="bg-bg-subtle py-20">
       <div className="mx-auto max-w-5xl px-6">
-        <h2 className="text-3xl font-bold text-text-strong mb-10">Projects</h2>
+        <h2 className="text-3xl font-bold text-text-strong mb-10">{t.projects.title}</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map(p => (
             <article
@@ -17,7 +20,7 @@ export function Projects() {
               style={{ boxShadow: 'var(--shadow-sm)' }}
             >
               <h3 className="text-lg font-semibold text-text-strong">{p.title}</h3>
-              <p className="mt-2 text-sm text-text">{p.description}</p>
+              <p className="mt-2 text-sm text-text">{t.projects.description}</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {p.tags.map(tag => (
                   <span

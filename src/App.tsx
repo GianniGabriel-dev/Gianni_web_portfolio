@@ -1,4 +1,5 @@
 import { ThemeProvider } from './context/ThemeContext'
+import { LanguageProvider } from './context/LanguageContext'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { Projects } from './components/Projects'
@@ -7,6 +8,7 @@ import { Contact } from './components/Contact'
 function App() {
   return (
     <ThemeProvider>
+    <LanguageProvider>
       <div className="min-h-screen bg-color-bg text-color-text">
         <Navbar />
         <main>
@@ -18,6 +20,7 @@ function App() {
           © {new Date().getFullYear()} Gianni Gabriel
         </footer>
       </div>
+    </LanguageProvider>
     </ThemeProvider>
   )
 }

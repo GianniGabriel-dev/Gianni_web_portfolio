@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { AnimatedThemeToggleButton } from "./animated-theme-toggle-button";
+import { LanguageToggleButton } from "./LanguageToggleButton";
+import { useLanguage } from "../context/LanguageContext";
 
 export function Navbar() {
+  const { t } = useLanguage()
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-bg/80 backdrop-blur">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
@@ -27,25 +30,25 @@ export function Navbar() {
         <ul className="flex gap-6 text-sm text-text">
           <li>
             <Link to="#about" className="hover:text-accent transition-colors">
-              About
+              {t.nav.about}
             </Link>
           </li>
           <li>
-            <Link
-              to="#projects"
-              className="hover:text-accent transition-colors"
-            >
-              Projects
+            <Link to="#projects" className="hover:text-accent transition-colors">
+              {t.nav.projects}
             </Link>
           </li>
           <li>
             <Link to="#contact" className="hover:text-accent transition-colors">
-              Contact
+              {t.nav.contact}
             </Link>
           </li>
         </ul>
 
-        <AnimatedThemeToggleButton type="circular" />
+        <div className="flex items-center gap-2">
+          <LanguageToggleButton />
+          <AnimatedThemeToggleButton type="circular" />
+        </div>
       </nav>
     </header>
   );
