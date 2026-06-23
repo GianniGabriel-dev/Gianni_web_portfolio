@@ -6,9 +6,11 @@ const en = {
   },
   hero: {
     greeting: "Hi, I'm",
-    bio: "Full-stack developer building clean, performant web applications.",
+    role: "Full-Stack web Developer",
+    bio: "Full-stack developer (TypeScript) specializing in backend development with Express.js. Experience with React and Next.js. Exploring cloud and DevOps.",
     cta_projects: "View projects",
     cta_contact: "Contact me",
+    cta_resume: "Download Resume",
   },
   projects: {
     title: "Projects",

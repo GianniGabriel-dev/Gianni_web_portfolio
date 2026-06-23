@@ -7,6 +7,8 @@
 
 /* ── Color tokens ─────────────────────────────────────────────────────────── */
 :root {
+  --grid-color: rgba(0, 0, 0, 0.07);
+  
   /* Backgrounds */
   --color-bg:           #ffffff;
   --color-bg-subtle:    #f8f7f4;
@@ -91,6 +93,7 @@
 
 /* ── Dark mode overrides ──────────────────────────────────────────────────── */
 .dark {
+  --grid-color: rgba(255, 255, 255, 0.05);
   --color-bg:           #16171d;
   --color-bg-subtle:    #1f2028;
   --color-bg-card:      #1f2028;
@@ -240,3 +243,23 @@ body {
     @apply bg-background text-foreground;}
   html {
     @apply font-sans;}}
+
+.dot-grid {
+  background-image: radial-gradient(circle, var(--grid-color) 1.7px, transparent 1.7px);
+  background-size: 28px 28px;
+}
+
+.profile-placeholder {
+  background: linear-gradient(135deg, var(--color-accent-subtle), var(--color-bg-subtle));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-placeholder::after {
+  content: "GG";
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: -0.02em;
+}
