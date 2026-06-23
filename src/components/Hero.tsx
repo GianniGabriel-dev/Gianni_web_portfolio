@@ -10,7 +10,7 @@ export function Hero() {
   return (
     <section
       id="about"
-      className="mx-auto flex max-md:flex-col max-md:py-12 items-center gap-6 max-w-5xl px-6 py-24 "
+      className="mx-auto flex max-md:flex-col max-md:py-12 items-center gap-6 max-w-5xl px-6 py-16 "
     >
       {/* Profile picture */}
       <div className="relative mx-auto w-fit">

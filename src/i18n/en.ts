@@ -12,6 +12,15 @@ const en = {
     cta_contact: "Contact me",
     cta_resume: "Download Resume",
   },
+  about: {
+    title: "About me",
+    p1: "I'm a full stack developer with training in web development and over 3 years of self-taught experience building projects.",
+    p2: "I started with a more traditional foundation, but I've specialized in the modern JavaScript / TypeScript ecosystem, working with technologies like Node.js, React and Next.js.",
+    p3: "I'm especially interested in backend — I enjoy understanding how applications work from the inside.",
+    p4: "Currently I'm focused on continuing to grow in backend and moving towards cloud and DevOps, which is the direction I want to take my career.",
+    p5: "When I'm not coding or learning, I like to play videogames, spend time with family/friends, exercise, and watch movies and anime 🎥.",
+    skillsTitle: "Technologies",
+  },
   projects: {
     title: "Projects",
     description: "Short description of what this project does.",

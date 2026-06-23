@@ -9,7 +9,7 @@ const PROJECTS = [
 export function Projects() {
   const { t } = useLanguage()
   return (
-    <section id="projects" className="bg-bg-subtle py-20">
+    <section id="projects" className="bg-bg-subtle py-16">
       <div className="mx-auto max-w-5xl px-6">
         <h2 className="text-3xl font-bold text-text-strong mb-10">{t.projects.title}</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
