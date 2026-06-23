@@ -21,6 +21,16 @@ const en = {
     p5: "When I'm not coding or learning, I like to play videogames, spend time with family/friends, exercise, and watch movies and anime 🎥.",
     skillsTitle: "Technologies",
   },
+  techStack: {
+    title: "Tech Stack",
+    filterLabel: "Filter by category:",
+    all: "All",
+    frontend: "Frontend",
+    backend: "Backend",
+    database: "Database",
+    tools: "Tools",
+    devops: "DevOps",
+  },
   projects: {
     title: "Projects",
     description: "Short description of what this project does.",
