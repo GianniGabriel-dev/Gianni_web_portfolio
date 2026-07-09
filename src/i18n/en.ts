@@ -33,7 +33,11 @@ const en = {
   },
   projects: {
     title: "Projects",
-    description: "Short description of what this project does.",
+    empty: "Projects coming soon.",
+    viewCode: "View code",
+    viewDemo: "Live demo",
+    // Keyed by Project.id from src/lib/projects.ts — add one entry per project.
+    items: {} as Record<string, { title: string; description: string }>,
   },
   contact: {
     title: "Get in touch",

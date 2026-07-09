@@ -14,9 +14,9 @@ export function Hero() {
     >
       {/* Profile picture */}
       <div className="relative mx-auto w-fit">
-        <div className="mx-auto size-50 max-md:size-40 rounded-full overflow-hidden ring-4 ring-accent/30 ring-offset-4 ring-offset-color-bg">
+        <div className="mx-auto size-60 max-md:size-50 rounded-full overflow-hidden ring-4 ring-accent/30 ring-offset-4 ring-offset-color-bg">
           <img
-            src="/profile.jpg"
+            src="/profileb.JPG"
             alt="Gianni Gabriel"
             className="size-full object-cover"
             onError={(e) => {

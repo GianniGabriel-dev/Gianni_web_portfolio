@@ -33,7 +33,11 @@ const es = {
   },
   projects: {
     title: "Proyectos",
-    description: "Descripción breve de lo que hace este proyecto.",
+    empty: "Proyectos próximamente.",
+    viewCode: "Ver código",
+    viewDemo: "Ver demo",
+    // Con clave según Project.id de src/lib/projects.ts — agrega una entrada por proyecto.
+    items: {} as Record<string, { title: string; description: string }>,
   },
   contact: {
     title: "Hablemos",

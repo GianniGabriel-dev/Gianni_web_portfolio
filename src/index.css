@@ -1,36 +1,36 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
+@import "@fontsource-variable/manrope";
 
 @custom-variant dark (&:is(.dark *));
 
 /* ── Color tokens ─────────────────────────────────────────────────────────── */
 :root {
-  --grid-color: rgba(0, 0, 0, 0.07);
-  
+  --grid-color: rgba(104, 83, 71, 0.08);
+
   /* Backgrounds */
-  --color-bg:           #ffffff;
-  --color-bg-subtle:    #f8f7f4;
+  --color-bg:           #fffdfb;
+  --color-bg-subtle:    #f7f2ed;
   --color-bg-card:      #ffffff;
 
   /* Surfaces / borders */
-  --color-border:       #e5e4e7;
-  --color-border-strong:#c9c8cc;
+  --color-border:       #e8e0d7;
+  --color-border-strong:#d1c3b4;
 
   /* Text */
-  --color-text:         #6b6375;
-  --color-text-strong:  #08060d;
-  --color-text-muted:   #9ca3af;
+  --color-text:         #6b5d52;
+  --color-text-strong:  #241c16;
+  --color-text-muted:   #9a8a7c;
 
-  /* Accent (purple) */
-  --color-accent:       #aa3bff;
-  --color-accent-hover: #8b2de0;
-  --color-accent-subtle:rgba(170, 59, 255, 0.10);
-  --color-accent-border:rgba(170, 59, 255, 0.50);
+  /* Accent (terracotta) */
+  --color-accent:       #a6653f;
+  --color-accent-hover: #895334;
+  --color-accent-subtle:rgba(166, 101, 63, 0.10);
+  --color-accent-border:rgba(166, 101, 63, 0.50);
 
   /* Code blocks */
-  --color-code-bg:      #f4f3ec;
+  --color-code-bg:      #f4efe7;
 
   /* Shadows */
   --shadow-sm: rgba(0,0,0,.08) 0 1px 3px;
@@ -93,24 +93,24 @@
 
 /* ── Dark mode overrides ──────────────────────────────────────────────────── */
 .dark {
-  --grid-color: rgba(255, 255, 255, 0.05);
-  --color-bg:           #16171d;
-  --color-bg-subtle:    #1f2028;
-  --color-bg-card:      #1f2028;
+  --grid-color: rgba(255, 240, 225, 0.05);
+  --color-bg:           #1a1512;
+  --color-bg-subtle:    #221b16;
+  --color-bg-card:      #221b16;
 
-  --color-border:       #2e303a;
-  --color-border-strong:#3d3f4d;
+  --color-border:       #362c24;
+  --color-border-strong:#4a3c32;
 
-  --color-text:         #9ca3af;
-  --color-text-strong:  #f3f4f6;
-  --color-text-muted:   #6b7280;
+  --color-text:         #b8aa9d;
+  --color-text-strong:  #f5efe8;
+  --color-text-muted:   #8a7a6c;
 
-  --color-accent:       #c084fc;
-  --color-accent-hover: #a855f7;
-  --color-accent-subtle:rgba(192, 132, 252, 0.15);
-  --color-accent-border:rgba(192, 132, 252, 0.50);
+  --color-accent:       #d79975;
+  --color-accent-hover: #d9814e;
+  --color-accent-subtle:rgba(215, 153, 117, 0.15);
+  --color-accent-border:rgba(215, 153, 117, 0.50);
 
-  --color-code-bg:      #1f2028;
+  --color-code-bg:      #221b16;
 
   --shadow-md: rgba(0,0,0,.40) 0 10px 15px -3px, rgba(0,0,0,.25) 0 4px 6px -2px;
 
@@ -200,7 +200,7 @@ body {
 
 @theme inline {
   --font-heading:           var(--font-sans);
-  --font-sans:           'Geist Variable', sans-serif;
+  --font-sans:           'Manrope Variable', sans-serif;
   --color-sidebar-ring:           var(--sidebar-ring);
   --color-sidebar-border:           var(--sidebar-border);
   --color-sidebar-accent-foreground:           var(--sidebar-accent-foreground);
@@ -266,6 +266,16 @@ body {
   font-weight: 700;
   color: var(--color-accent);
   letter-spacing: -0.02em;
+}
+
+/* Let clicks pass through the view-transition snapshot overlay so the
+   page stays interactive while the theme-toggle animation plays. */
+::view-transition,
+::view-transition-group(*),
+::view-transition-image-pair(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  pointer-events: none;
 }
 
 /* Smooth scroll offset for sticky navbar */
