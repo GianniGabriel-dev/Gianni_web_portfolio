@@ -37,7 +37,9 @@ const es = {
     viewCode: "Ver código",
     viewDemo: "Ver demo",
     // Con clave según Project.id de src/lib/projects.ts — agrega una entrada por proyecto.
-    items: {} as Record<string, { title: string; description: string }>,
+    // `description` es el resumen corto que siempre se ve en la tarjeta.
+    // `details` son los párrafos más largos que se muestran en el diálogo del proyecto.
+    items: {} as Record<string, { title: string; description: string; details?: string[] }>,
   },
   contact: {
     title: "Hablemos",

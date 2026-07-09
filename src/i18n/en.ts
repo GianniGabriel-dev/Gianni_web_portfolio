@@ -37,7 +37,9 @@ const en = {
     viewCode: "View code",
     viewDemo: "Live demo",
     // Keyed by Project.id from src/lib/projects.ts — add one entry per project.
-    items: {} as Record<string, { title: string; description: string }>,
+    // `description` is the short blurb always shown on the card.
+    // `details` are the longer paragraphs shown in the project dialog.
+    items: {} as Record<string, { title: string; description: string; details?: string[] }>,
   },
   contact: {
     title: "Get in touch",
