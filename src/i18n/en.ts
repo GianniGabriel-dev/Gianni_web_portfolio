@@ -36,10 +36,23 @@ const en = {
     empty: "Projects coming soon.",
     viewCode: "View code",
     viewDemo: "Live demo",
+    viewMore: "View more",
     // Keyed by Project.id from src/lib/projects.ts — add one entry per project.
     // `description` is the short blurb always shown on the card.
     // `details` are the longer paragraphs shown in the project dialog.
-    items: {} as Record<string, { title: string; description: string; details?: string[] }>,
+    items: {
+      "project-one": {
+        title: "PingUp",
+        description: "Full-stack social media platform inspired by Twitter/X with AI integrations for sentiment analysis and translation of posts, infinite scroll, and media handling.",
+        details: [
+          "SPA built with React + TypeScript on the frontend and Express.js + Prisma + PostgreSQL on the backend. Implements JWT authentication, cursor-based pagination, and TanStack Query for caching and infinite scrolling.",
+          "Features include post creation with image/video support, client-side image cropping, likes, comments, follows, and a notification system. Integrates Google Cloud Translation API with a database-backed translation cache and Google NLP for AI sentiment filtering on the main feed.",
+          "User profiles support editable avatars and banners uploaded to Cloudinary. The feed system offers chronological, following-only, and sentiment-filtered views. Frontend validated with Zod, backend with Express Validator.",
+        ],
+      },
+      "project-two": { title: "Project two", description: "Short description of project two.", details: ["Longer description of project two.", "Additional details about project two."] },
+      "project-three": { title: "Project three", description: "Short description of project three.", details: ["Longer description of project three.", "Additional details about project three."] },
+    } as Record<string, { title: string; description: string; details?: string[] }>,
   },
   contact: {
     title: "Get in touch",

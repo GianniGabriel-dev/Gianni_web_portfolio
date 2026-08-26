@@ -11,7 +11,7 @@ export const projects: Project[] = [
   {
     id: "project-one",
     image: "/projects/project-one.png",
-    tags: ["React", "TypeScript"],
+    tags: ["Express.js", "React", "TypeScript","PostgreSQL"],
     github: "https://github.com/yourname/project-one",
     demo: "https://project-one.example.com",
   },

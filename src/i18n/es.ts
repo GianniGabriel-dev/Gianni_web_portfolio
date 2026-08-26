@@ -36,16 +36,47 @@ const es = {
     empty: "Proyectos próximamente.",
     viewCode: "Ver código",
     viewDemo: "Ver demo",
+    viewMore: "Ver más",
     // Con clave según Project.id de src/lib/projects.ts — agrega una entrada por proyecto.
     // `description` es el resumen corto que siempre se ve en la tarjeta.
     // `details` son los párrafos más largos que se muestran en el diálogo del proyecto.
-    items: {} as Record<string, { title: string; description: string; details?: string[] }>,
+    items: {
+      "project-one": {
+        title: "PingUp",
+        description:
+          "Plataforma de redes sociales full-stack inspirada en Twitter/X con integraciones de IA para análisis de sentimiento y traducción de posts, scroll infinito y manejo de multimedia.",
+        details: [
+          "SPA construida con React + TypeScript en el frontend y Express.js + Prisma + PostgreSQL en el backend. Implementa autenticación JWT, paginación basada en cursores y TanStack Query para caché e scroll infinito.",
+          "Incluye creación de posts con soporte de imagen/video, recorte de imágenes del lado del cliente, likes, comentarios, follows y un sistema de notificaciones. Integra Google Cloud Translation API con caché de traducciones en base de datos y Google NLP para filtrado de sentimiento con IA en el feed principal.",
+          "Los perfiles de usuario permiten avatar y banner editables subidos a Cloudinary. El feed ofrece vistas cronológicas, solo seguidos y filtradas por sentimiento. Validación frontal con Zod, backend con Express Validator.",
+        ],
+      },
+      "project-two": {
+        title: "Proyecto dos",
+        description: "Descripción corta del proyecto dos.",
+        details: [
+          "Descripción más larga del proyecto dos.",
+          "Detalles adicionales sobre el proyecto dos.",
+        ],
+      },
+      "project-three": {
+        title: "Proyecto tres",
+        description: "Descripción corta del proyecto tres.",
+        details: [
+          "Descripción más larga del proyecto tres.",
+          "Detalles adicionales sobre el proyecto tres.",
+        ],
+      },
+    } as Record<
+      string,
+      { title: string; description: string; details?: string[] }
+    >,
   },
   contact: {
     title: "Hablemos",
     bio: "Abierto a nuevas oportunidades — escríbeme cuando quieras.",
     cta: "Saludar",
   },
-} as const
+} as const;
 
-export default es
+export default es;

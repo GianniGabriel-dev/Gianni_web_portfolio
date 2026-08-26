@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { useLanguage } from "../context/LanguageContext";
 import { projects, type Project } from "../lib/projects";
@@ -34,40 +34,70 @@ export function Projects() {
   const activeCopy = activeProject ? t.projects.items[activeProject.id] : undefined;
 
   return (
-    <section id="projects" className="bg-bg-subtle py-16">
+    <section id="projects" className="py-20">
       <div className="mx-auto max-w-5xl px-6">
-        <h2 className="text-3xl font-bold text-text-strong mb-10">{t.projects.title}</h2>
+        <h2 className="text-3xl font-bold text-text-strong mb-12">{t.projects.title}</h2>
 
         {projects.length === 0 ? (
           <p className="text-text-muted">{t.projects.empty}</p>
         ) : (
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-8">
             {projects.map((project) => {
               const copy = t.projects.items[project.id];
               return (
-                <button
+                <div
                   key={project.id}
-                  type="button"
                   onClick={() => setActiveProject(project)}
-                  className="flex flex-col overflow-hidden rounded-xl border border-border bg-bg-card text-left transition-colors hover:border-accent md:flex-row"
-                  style={{ boxShadow: "var(--shadow-sm)" }}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-bg-card transition-all hover:border-accent/50 hover:shadow-md md:flex-row"
                 >
                   {project.image && (
-                    <img
-                      src={project.image}
-                      alt={copy?.title ?? project.id}
-                      className="h-48 w-full shrink-0 object-cover md:h-auto md:w-72"
-                    />
+                    <div className="relative h-64 w-full shrink-0 overflow-hidden md:h-auto md:w-96">
+                      <img
+                        src={project.image}
+                        alt={copy?.title ?? project.id}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                    </div>
                   )}
 
-                  <div className="flex flex-1 flex-col justify-center gap-3 p-6">
-                    <h3 className="text-lg font-semibold text-text-strong">
+                  <div className="flex flex-1 flex-col gap-3 p-6">
+                    <h3 className="text-xl font-semibold text-text-strong">
                       {copy?.title ?? project.id}
                     </h3>
-                    <p className="text-sm text-text">{copy?.description}</p>
+                    <p className="text-sm leading-relaxed text-text">
+                      {copy?.description}
+                    </p>
                     <Tags tags={project.tags} />
+
+                    <div className="mt-auto flex items-center gap-3 pt-4">
+                      {project.github && (
+                        <Button variant="outline" size="sm" asChild onClick={(e) => e.stopPropagation()}>
+                          <a href={project.github} target="_blank" rel="noreferrer">
+                            <SiGithub size={14} />
+                            {t.projects.viewCode}
+                          </a>
+                        </Button>
+                      )}
+                      {project.demo && (
+                        <Button size="sm" asChild onClick={(e) => e.stopPropagation()}>
+                          <a href={project.demo} target="_blank" rel="noreferrer">
+                            <ExternalLink size={14} />
+                            {t.projects.viewDemo}
+                          </a>
+                        </Button>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => setActiveProject(project)}
+                        className="ml-auto inline-flex items-center gap-1 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
+                      >
+                        {t.projects.viewMore}
+                        <ArrowRight size={14} />
+                      </button>
+                    </div>
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>
@@ -78,23 +108,27 @@ export function Projects() {
         open={activeProject !== null}
         onOpenChange={(open) => !open && setActiveProject(null)}
       >
-        <DialogContent className="sm:max-w-lg">
+        <DialogContent className="sm:max-w-2xl">
           {activeProject && (
             <>
               <DialogHeader>
-                <DialogTitle>{activeCopy?.title ?? activeProject.id}</DialogTitle>
+                <DialogTitle className="text-xl">
+                  {activeCopy?.title ?? activeProject.id}
+                </DialogTitle>
                 <DialogDescription>{activeCopy?.description}</DialogDescription>
               </DialogHeader>
 
               {activeProject.image && (
-                <img
-                  src={activeProject.image}
-                  alt={activeCopy?.title ?? activeProject.id}
-                  className="max-h-64 w-full rounded-lg object-cover"
-                />
+                <div className="overflow-hidden rounded-xl">
+                  <img
+                    src={activeProject.image}
+                    alt={activeCopy?.title ?? activeProject.id}
+                    className="h-64 w-full object-cover"
+                  />
+                </div>
               )}
 
-              <div className="space-y-3 text-sm leading-relaxed text-text">
+              <div className="space-y-4 text-sm leading-relaxed text-text">
                 {(activeCopy?.details?.length
                   ? activeCopy.details
                   : activeCopy?.description

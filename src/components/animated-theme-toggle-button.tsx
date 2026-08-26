@@ -1,31 +1,14 @@
-import { useEffect, useRef, useState, useCallback } from "react"
+import { useRef, useCallback } from "react"
 import { Moon, Sun } from "lucide-react"
 import { flushSync } from "react-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "../lib/utils.ts"
+import { useTheme } from "../context/ThemeContext.tsx"
 export type ThemeTransitionType = "horizontal" | "vertical" | "circular"
 
 type AnimatedThemeToggleButtonProps = {
   type: ThemeTransitionType
   className?: string
-}
-
-function useThemeState() {
-  const [darkMode, setDarkMode] = useState(
-    () =>
-      typeof window !== "undefined"
-        ? document.documentElement.classList.contains("dark")
-        : false
-  )
-
-  useEffect(() => {
-    const sync = () => setDarkMode(document.documentElement.classList.contains("dark"))
-    const observer = new MutationObserver(sync)
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] })
-    return () => observer.disconnect()
-  }, [])
-
-  return [darkMode, setDarkMode] as const
 }
 
 function triggerThemeTransition(type: ThemeTransitionType) {
@@ -78,22 +61,20 @@ export const AnimatedThemeToggleButton = ({
   className
 }: AnimatedThemeToggleButtonProps) => {
   const buttonRef = useRef<HTMLButtonElement>(null)
-  const [darkMode, setDarkMode] = useThemeState()
+  const { theme, toggleTheme } = useTheme()
+  const darkMode = theme === "dark"
 
   const handleToggle = useCallback(async () => {
     if (!buttonRef.current) return
 
     await document.startViewTransition(() => {
       flushSync(() => {
-        const toggled = !darkMode
-        setDarkMode(toggled)
-        document.documentElement.classList.toggle("dark", toggled)
-        localStorage.setItem("theme", toggled ? "dark" : "light")
+        toggleTheme()
       })
     }).ready
 
     triggerThemeTransition(type)
-  }, [darkMode, type, setDarkMode])
+  }, [type, toggleTheme])
 
   return (
     <button
