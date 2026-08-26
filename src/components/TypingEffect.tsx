@@ -10,6 +10,7 @@ export function TypingEffect({ text, speed = 50, className = "" }: TypingEffectP
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDisplayedText("");
     let interval: number | undefined;
 

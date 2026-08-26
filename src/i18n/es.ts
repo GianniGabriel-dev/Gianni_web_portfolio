@@ -1,12 +1,15 @@
 const es = {
   nav: {
     about: "Sobre mí",
+    experience: "Experiencia",
+    education: "Educación",
     projects: "Proyectos",
     contact: "Contacto",
   },
   hero: {
     greeting: "Hola, soy",
     role: "Desarrollador web Full-Stack",
+    location: "Actualmente ubicado en Alicante, España",
     bio: "Desarrollador full-stack (TypeScript) especializado en backend con Express.js. Experiencia en React y Next.js. Explorando cloud y DevOps.",
     cta_projects: "Ver proyectos",
     cta_contact: "Contáctame",
@@ -76,6 +79,62 @@ const es = {
     title: "Hablemos",
     bio: "Abierto a nuevas oportunidades — escríbeme cuando quieras.",
     cta: "Saludar",
+  },
+  experience: {
+    title: "Experiencia",
+    items: [
+      {
+        role: "Desarrollador web frontend y analista de SEO",
+        company: "Cerrajerocasi24h",
+        period: "2 marzo 2026 - 5 junio 2026",
+        description: "En este rol de practicas profesionales migré el sitio web anterior elaborado en wordpress a un sitio web moderno desarrollado con Next.js y Tailwind CSS. Implementé mejoras de SEO y optimización de rendimiento, logrando un aumento significativo en la velocidad de carga y la visibilidad en motores de búsqueda.  ",
+        tags: ["Next.js", "React", "TypeScript", "Tailwind"],
+      },
+      {
+        role: "Desarrollador Frontend",
+        company: "Nombre de la empresa",
+        period: "2022 - 2023",
+        description: "Descripción de tu rol y responsabilidades aquí.",
+        tags: ["React", "TypeScript", "Tailwind"],
+      },
+      {
+        role: "Desarrollador Web",
+        company: "Nombre de la empresa",
+        period: "2021 - 2022",
+        description: "Descripción de tu rol y responsabilidades aquí.",
+        tags: ["JavaScript", "HTML", "CSS"],
+      },
+    ] as {
+      role: string;
+      company: string;
+      period: string;
+      description: string;
+      tags: string[];
+    }[],
+  },
+  education: {
+    title: "Educación",
+    items: [
+      {
+        degree: "Técnico Superior en Desarrollo de Aplicaciones Web",
+        institution: "IES Torrevigía",
+        period: "2024 - 2026",
+        description:
+          "En este ciclo formativo adquirí conocimientos avanzados de desarrollo web, incluyendo tecnologías frontend y backend, así como buenas prácticas de ingeniería de software.",
+      },
+      {
+        degree: "Especialización en Cloud Computing",
+        institution: "IES Mare Nostrum",
+        period: "Actualmente cursando - 2027",
+        description:
+          "En esta especialización me estoy formando en tecnologías cloud, arquitectura en la nube, estrategias de despliegue y prácticas de DevOps para desarrollar aplicaciones escalables y eficientes.",
+      },
+    ] as {
+      degree: string;
+      institution: string;
+      period: string;
+      description: string;
+    }[],
   },
 } as const;
 

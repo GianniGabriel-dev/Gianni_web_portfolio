@@ -35,10 +35,18 @@ export function Hero() {
         <div>
           <h1 className="text-4xl font-bold tracking-tight text-text-strong md:text-5xl">
             {t.hero.greeting}{" "}
-            <TypingEffect text="Gianni Gabriel" speed={80} className="text-accent" />
+            <TypingEffect
+              text="Gianni Gabriel"
+              speed={80}
+              className="text-accent"
+            />
           </h1>
           <p className="mt-3 text-2xl font-semibold text-accent md:text-3xl">
             <TypingEffect text={t.hero.role} speed={60} />
+          </p>
+          <p className="mt-2 flex items-center gap-2 text-sm text-text-muted">
+            <span>📍</span>
+            {t.hero.location}
           </p>
         </div>
         <p className="text-lg text-text max-w-2xl">{t.hero.bio}</p>
@@ -47,7 +55,7 @@ export function Hero() {
             {/* CV view */}
             <a
               href="/cv.pdf"
-              target="_blank" 
+              target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg flex items-center justify-center gap-2 bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover transition-colors"
             >

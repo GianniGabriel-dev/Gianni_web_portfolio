@@ -43,6 +43,22 @@ export function Navbar() {
             </a>
           </li>
           <li>
+            <a
+              href="#education"
+              className="hover:text-accent transition-colors"
+            >
+              {t.nav.education}
+            </a>
+          </li>
+          <li>
+            <a
+              href="#experience"
+              className="hover:text-accent transition-colors"
+            >
+              {t.nav.experience}
+            </a>
+          </li>
+          <li>
             <a href="#contact" className="hover:text-accent transition-colors">
               {t.nav.contact}
             </a>
@@ -110,7 +126,9 @@ export function Navbar() {
                     e.preventDefault();
                     closeMenu();
                     setTimeout(() => {
-                      document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+                      document
+                        .getElementById("about")
+                        ?.scrollIntoView({ behavior: "smooth" });
                     }, 300);
                   }}
                 >
@@ -120,7 +138,49 @@ export function Navbar() {
               <motion.li
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.075 }}
+              >
+                <a
+                  href="#experience"
+                  className="block py-2 hover:text-accent transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    closeMenu();
+                    setTimeout(() => {
+                      document
+                        .getElementById("experience")
+                        ?.scrollIntoView({ behavior: "smooth" });
+                    }, 300);
+                  }}
+                >
+                  {t.nav.experience}
+                </a>
+              </motion.li>
+              <motion.li
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.1 }}
+              >
+                <a
+                  href="#education"
+                  className="block py-2 hover:text-accent transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    closeMenu();
+                    setTimeout(() => {
+                      document
+                        .getElementById("education")
+                        ?.scrollIntoView({ behavior: "smooth" });
+                    }, 300);
+                  }}
+                >
+                  {t.nav.education}
+                </a>
+              </motion.li>
+              <motion.li
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.15 }}
               >
                 <a
                   href="#projects"
@@ -129,7 +189,9 @@ export function Navbar() {
                     e.preventDefault();
                     closeMenu();
                     setTimeout(() => {
-                      document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+                      document
+                        .getElementById("projects")
+                        ?.scrollIntoView({ behavior: "smooth" });
                     }, 300);
                   }}
                 >
@@ -148,7 +210,9 @@ export function Navbar() {
                     e.preventDefault();
                     closeMenu();
                     setTimeout(() => {
-                      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                      document
+                        .getElementById("contact")
+                        ?.scrollIntoView({ behavior: "smooth" });
                     }, 300);
                   }}
                 >
