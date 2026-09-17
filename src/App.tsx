@@ -8,11 +8,13 @@ import { Experience } from "./components/Experience";
 import { Education } from "./components/Education";
 import { Projects } from "./components/Projects";
 import { Contact } from "./components/Contact";
+import { Toaster } from "sonner";
 
 function App() {
   return (
     <ThemeProvider>
       <LanguageProvider>
+        <Toaster position="bottom-right" richColors />
         <div className="min-h-screen bg-color-bg text-color-text">
           <Navbar />
           <main className="dot-grid">

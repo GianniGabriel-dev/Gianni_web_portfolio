@@ -1,4 +1,4 @@
-import { Download, Eye } from "lucide-react";
+import { Download, Eye, LocateFixed } from "lucide-react";
 import { LinkedInIcon } from "../assets/linkedinIcon.tsx";
 import { useLanguage } from "../context/LanguageContext";
 import { TypingEffect } from "./TypingEffect";
@@ -45,11 +45,10 @@ export function Hero() {
             <TypingEffect text={t.hero.role} speed={60} />
           </p>
           <p className="mt-2 flex items-center gap-2 text-sm text-text-muted">
-            <span>📍</span>
+            <LocateFixed size={20} className="text-accent" />
             {t.hero.location}
           </p>
         </div>
-        <p className="text-lg text-text max-w-2xl">{t.hero.bio}</p>
         <div className="flex flex-col max-md:flex-col-reverse gap-3 w-full">
           <div className="grid grid-cols-2 gap-3 max-md:grid-cols-1">
             {/* CV view */}

@@ -47,7 +47,7 @@ const es = {
       "project-one": {
         title: "PingUp",
         description:
-          "Plataforma de redes sociales full-stack inspirada en Twitter/X con integraciones de IA para análisis de sentimiento y traducción de posts, scroll infinito y manejo de multimedia.",
+          "Plataforma de redes sociales full-stack inspirada en Twitter/X con integraciones de IA para análisis de sentimiento y traducción de posts, scroll infinito y manejo de multimedia, interacciones sociales típicas como likes, comentarios y follows, y un sistema de notificaciones.",
         details: [
           "SPA construida con React + TypeScript en el frontend y Express.js + Prisma + PostgreSQL en el backend. Implementa autenticación JWT, paginación basada en cursores y TanStack Query para caché e scroll infinito.",
           "Incluye creación de posts con soporte de imagen/video, recorte de imágenes del lado del cliente, likes, comentarios, follows y un sistema de notificaciones. Integra Google Cloud Translation API con caché de traducciones en base de datos y Google NLP para filtrado de sentimiento con IA en el feed principal.",
@@ -78,7 +78,21 @@ const es = {
   contact: {
     title: "Hablemos",
     bio: "Abierto a nuevas oportunidades — escríbeme cuando quieras.",
-    cta: "Saludar",
+    email: "clondireanug@gmail.com",
+    linkedin: "LinkedIn",
+    form: {
+      name: "Tu nombre",
+      email: "Tu correo",
+      message: "Tu mensaje",
+      sending: "Enviando...",
+      submit: "Enviar mensaje",
+      nameRequired: "El nombre es obligatorio.",
+      emailRequired: "El correo es obligatorio.",
+      emailInvalid: "Ingresa un correo válido.",
+      messageRequired: "El mensaje es obligatorio.",
+      success: "¡Mensaje enviado! Te responderé pronto.",
+      error: "Algo salió mal. Inténtalo de nuevo más tarde.",
+    },
   },
   experience: {
     title: "Experiencia",
@@ -87,22 +101,8 @@ const es = {
         role: "Desarrollador web frontend y analista de SEO",
         company: "Cerrajerocasi24h",
         period: "2 marzo 2026 - 5 junio 2026",
-        description: "En este rol de practicas profesionales migré el sitio web anterior elaborado en wordpress a un sitio web moderno desarrollado con Next.js y Tailwind CSS. Implementé mejoras de SEO y optimización de rendimiento, logrando un aumento significativo en la velocidad de carga y la visibilidad en motores de búsqueda.  ",
+        description: "Durante mis prácticas profesionales migré el sitio web de WordPress a Next.js y Tailwind CSS, mejorando la velocidad de carga y el rendimiento general en un 60%, además de optimizar la estructura técnica y el SEO local. Estas mejoras contribuyeron a aumentar un 94% las impresiones y un 31% los clics orgánicos de la página principal.",
         tags: ["Next.js", "React", "TypeScript", "Tailwind"],
-      },
-      {
-        role: "Desarrollador Frontend",
-        company: "Nombre de la empresa",
-        period: "2022 - 2023",
-        description: "Descripción de tu rol y responsabilidades aquí.",
-        tags: ["React", "TypeScript", "Tailwind"],
-      },
-      {
-        role: "Desarrollador Web",
-        company: "Nombre de la empresa",
-        period: "2021 - 2022",
-        description: "Descripción de tu rol y responsabilidades aquí.",
-        tags: ["JavaScript", "HTML", "CSS"],
       },
     ] as {
       role: string;

@@ -51,12 +51,19 @@ export function Projects() {
                   className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-bg-card transition-all hover:border-accent/50 hover:shadow-md md:flex-row"
                 >
                   {project.image && (
-                    <div className="relative h-64 w-full shrink-0 overflow-hidden md:h-auto md:w-96">
+                    <div className="relative w-full shrink-0 overflow-hidden md:w-99">
                       <img
                         src={project.image}
                         alt={copy?.title ?? project.id}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
                       />
+                      {project.images && (
+                        <img
+                          src={project.images[0]}
+                          alt=""
+                          className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                        />
+                      )}
                       <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                     </div>
                   )}
@@ -123,7 +130,7 @@ export function Projects() {
                   <img
                     src={activeProject.image}
                     alt={activeCopy?.title ?? activeProject.id}
-                    className="h-64 w-full object-cover"
+                    className="w-full"
                   />
                 </div>
               )}

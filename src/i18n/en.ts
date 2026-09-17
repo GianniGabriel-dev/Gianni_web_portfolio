@@ -10,7 +10,7 @@ const en = {
     greeting: "Hi, I'm",
     role: "Full-Stack web Developer",
     location: "Currently based in Alicante, Spain",
-    bio: "Full-stack developer (TypeScript) specializing in backend development with Express.js. Experience with React and Next.js. Exploring cloud and DevOps.",
+    bio: "Full-stack (TypeScript) developer specializing in backend with Express.js. Experienced in React and Next.js. Exploring cloud and DevOps.",
     cta_projects: "View projects",
     cta_contact: "Contact me",
     cta_resume: "Download Resume",
@@ -47,7 +47,7 @@ const en = {
       "project-one": {
         title: "PingUp",
         description:
-          "Full-stack social media platform inspired by Twitter/X with AI integrations for sentiment analysis and translation of posts, infinite scroll, and media handling.",
+          "Full-stack social media platform inspired by Twitter/X with AI integrations for sentiment analysis and translation of posts, infinite scroll, media handling, typical social interactions like likes, comments and follows, and a notification system.",
         details: [
           "SPA built with React + TypeScript on the frontend and Express.js + Prisma + PostgreSQL on the backend. Implements JWT authentication, cursor-based pagination, and TanStack Query for caching and infinite scrolling.",
           "Features include post creation with image/video support, client-side image cropping, likes, comments, follows, and a notification system. Integrates Google Cloud Translation API with a database-backed translation cache and Google NLP for AI sentiment filtering on the main feed.",
@@ -78,31 +78,31 @@ const en = {
   contact: {
     title: "Get in touch",
     bio: "Open to new opportunities — reach out anytime.",
-    cta: "Say hello",
+    email: "clondireanug@gmail.com",
+    linkedin: "LinkedIn",
+    form: {
+      name: "Your name",
+      email: "Your email",
+      message: "Your message",
+      sending: "Sending...",
+      submit: "Send message",
+      nameRequired: "Name is required.",
+      emailRequired: "Email is required.",
+      emailInvalid: "Please enter a valid email.",
+      messageRequired: "Message is required.",
+      success: "Message sent! I'll get back to you soon.",
+      error: "Something went wrong. Please try again later.",
+    },
   },
   experience: {
     title: "Experience",
     items: [
       {
-        role: "Full-Stack Developer",
-        company: "Company Name",
-        period: "2023 - Present",
-        description: "Description of your role and responsibilities goes here.",
-        tags: ["React", "Node.js", "TypeScript"],
-      },
-      {
-        role: "Frontend Developer",
-        company: "Company Name",
-        period: "2022 - 2023",
-        description: "Description of your role and responsibilities goes here.",
-        tags: ["React", "TypeScript", "Tailwind"],
-      },
-      {
-        role: "Web Developer",
-        company: "Company Name",
-        period: "2021 - 2022",
-        description: "Description of your role and responsibilities goes here.",
-        tags: ["JavaScript", "HTML", "CSS"],
+        role: "Frontend Web Developer & SEO Analyst",
+        company: "Cerrajerocasi24h",
+        period: "March 2, 2026 - June 5, 2026",
+        description: "During my professional internship, I migrated the website from WordPress to Next.js and Tailwind CSS, improving page load speed and overall performance by 60%, while also optimizing its technical structure and local SEO. These improvements contributed to a 94% increase in impressions and a 31% increase in organic clicks on the main page.",
+        tags: ["Next.js", "React", "TypeScript", "Tailwind"],
       },
     ] as {
       role: string;
@@ -138,4 +138,4 @@ const en = {
   },
 } as const;
 
-export default en
+export default en;
