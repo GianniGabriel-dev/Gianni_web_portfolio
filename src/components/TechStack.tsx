@@ -2,7 +2,6 @@ import { useState, useMemo } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { stack } from "../lib/techStack";
 import { ScrollReveal } from "./ScrollReveal";
-import { motion } from "framer-motion";
 import "../styles/techStack.css";
 
 type FilterType = "all" | "frontend" | "backend" | "database" | "tools" | "devops";
@@ -58,71 +57,76 @@ export function TechStack() {
   };
 
   return (
-    <section id="tech-stack" className="section-spacing mx-auto max-w-6xl px-6">
+    <section id="tech-stack" className="w-full mx-auto max-w-5xl py-20 px-6">
       <ScrollReveal>
-        <h2 className="text-3xl font-bold text-text-strong tracking-tight">{t.techStack.title}</h2>
+        <h2 className="text-3xl font-bold text-text-strong mb-10">{t.techStack.title}</h2>
       </ScrollReveal>
 
-      {/* Ticker */}
-      <ScrollReveal delay={0.1}>
-        <div className="w-full overflow-hidden border-y border-border/60 py-4 mt-10 mb-10">
-          <div className="ticker-track">
-            {[...stack, ...stack].map((tech, idx) => {
-              const Icon = tech.icon;
-              return (
-                <div key={`${tech.name}-${idx}`} className="ticker-item">
-                  <Icon className="w-4 h-4 text-accent/70 shrink-0" />
-                  <span className="text-[11px] font-semibold text-text-muted uppercase tracking-widest">
-                    {tech.name}
-                  </span>
-                </div>
-              );
-            })}
+      <div className="mx-auto max-w-5xl">
+        <ScrollReveal delay={0.05}>
+          {/* Infinite Ticker — always all technologies */}
+          <div className="w-full bg-bg-card overflow-hidden mb-12 border-y border-border py-3">
+            <div className="ticker-track">
+              {[...stack, ...stack].map((tech, idx) => {
+                const Icon = tech.icon;
+                return (
+                  <div key={`${tech.name}-${idx}`} className="ticker-item">
+                    <Icon className="w-4 h-4 text-accent shrink-0" />
+                    <span className="text-xs  font-bold text-text-strong uppercase tracking-widest">
+                      {tech.name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
 
-      <ScrollReveal delay={0.15}>
-        {/* Filter Pills */}
-        <div className="flex flex-wrap gap-2 mb-8">
-          {allTypes.map((type) => (
-            <button
-              key={type}
-              onClick={() => setFilter(type)}
-              aria-pressed={filter === type}
-              aria-label={`${getFilterLabel(type)} (${counts[type]})`}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
-                filter === type
-                  ? "bg-accent text-white border-accent shadow-sm"
-                  : "bg-transparent text-text-muted border-border hover:border-accent hover:text-accent"
-              }`}
-            >
-              <span className="tracking-wide">{getFilterLabel(type)}</span>
-              <span className={`text-xs ${filter === type ? "text-white/70" : "text-text-muted/60"}`}>
-                {counts[type]}
-              </span>
-            </button>
-          ))}
-        </div>
+        <ScrollReveal delay={0.1}>
+          {/* Filter Pills */}
+          <div className="flex flex-wrap gap-2 mb-8">
+            {allTypes.map((type) => (
+              <button
+                key={type}
+                onClick={() => setFilter(type)}
+                aria-pressed={filter === type}
+                aria-label={`${getFilterLabel(type)} (${counts[type]})`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
+                  filter === type
+                    ? "bg-accent-subtle text-accent border-accent"
+                    : "bg-bg-subtle text-text border-border hover:border-accent"
+                }`}
+              >
+                <span className="uppercase tracking-wide">{getFilterLabel(type)}</span>
+                <span
+                  className={`text-xs ${
+                    filter === type ? "text-bg-primary/70" : "text-text-muted"
+                  }`}
+                >
+                  {counts[type]}
+                </span>
+              </button>
+            ))}
+          </div>
+        </ScrollReveal>
 
         {/* Tech Cards Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {filteredStack.map((tech) => {
             const Icon = tech.icon;
             return (
-              <motion.div
-                key={tech.name}
-                className="flex items-center bg-bg-subtle/50 gap-3 px-4 py-3 rounded-xl border border-border/60 hover:border-accent/40 hover:bg-bg-card transition-all duration-300 group cursor-default"
-                whileHover={{ y: -2 }}
-                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <Icon className="w-4 h-4 text-accent/70 shrink-0 group-hover:text-accent transition-colors duration-300" />
-                <span className="text-sm font-medium text-text group-hover:text-text-strong transition-colors duration-300">{tech.name}</span>
-              </motion.div>
+              <ScrollReveal key={tech.name}>
+                <div
+                  className="flex items-center bg-bg-subtle gap-3 px-4 py-3 rounded-lg border border-border hover:border-text-muted transition-all duration-200 group cursor-default"
+                >
+                  <Icon className="w-5 h-5 text-accent shrink-0" />
+                  <span className="text-sm font-medium text-text">{tech.name}</span>
+                </div>
+              </ScrollReveal>
             );
           })}
         </div>
-      </ScrollReveal>
+      </div>
     </section>
   );
 }

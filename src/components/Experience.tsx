@@ -5,16 +5,16 @@ export function Experience() {
   const { t } = useLanguage();
 
   return (
-    <section id="experience" className="section-spacing">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="experience" className="py-20">
+      <div className="mx-auto max-w-5xl px-6">
         <ScrollReveal>
-          <h2 className="text-3xl font-bold text-text-strong tracking-tight">
+          <h2 className="text-3xl font-bold text-text-strong mb-12">
             {t.experience.title}
           </h2>
         </ScrollReveal>
 
-        <div className="relative space-y-0 mt-10">
-          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-border/60" />
+        <div className="relative space-y-0">
+          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-border" />
 
           {t.experience.items.map((item, i) => (
             <ScrollReveal key={i} delay={i * 0.1}>
@@ -23,7 +23,7 @@ export function Experience() {
                   <div className="size-2.5 rounded-full bg-accent" />
                 </div>
 
-                <div className="flex-1 rounded-xl border border-border/60 bg-bg-card p-6 transition-all duration-300 hover:border-accent/30 hover:shadow-sm">
+                <div className="flex-1 rounded-xl border border-border bg-bg-card p-5 transition-colors hover:border-accent/50">
                   <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
                     <h3 className="text-lg font-semibold text-text-strong">
                       {item.role}
@@ -36,7 +36,7 @@ export function Experience() {
                   <p className="mt-3 text-sm leading-relaxed text-text">
                     {item.description}
                   </p>
-                  <div className="mt-4 flex flex-wrap gap-1.5">
+                  <div className="mt-4 flex flex-wrap gap-2">
                     {item.tags.map((tag) => (
                       <span
                         key={tag}

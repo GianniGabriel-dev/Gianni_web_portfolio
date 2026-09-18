@@ -2,9 +2,8 @@ import { useState } from "react";
 import { Copy, Check, Mail, Send } from "lucide-react";
 import { LinkedInIcon } from "../assets/linkedinIcon.tsx";
 import { useLanguage } from "../context/LanguageContext";
-import { Button } from "./ui/button";
 import { ScrollReveal } from "./ScrollReveal";
-import { motion } from "framer-motion";
+import { Button } from "./ui/button";
 import { toast } from "sonner";
 
 export function Contact() {
@@ -111,43 +110,42 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="section-spacing">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="contact" className="py-20">
+      <div className="mx-auto max-w-5xl px-6">
         <ScrollReveal>
-          <h2 className="text-3xl font-bold text-text-strong tracking-tight">
+          <h2 className="text-3xl font-black text-text-strong">
             {t.contact.title}
           </h2>
           <p className="mt-3 text-text">{t.contact.bio}</p>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.1}>
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+        <ScrollReveal delay={0.08}>
+          <div className="mt-8 flex flex-col gap-8 sm:flex-row sm:items-center">
             <div className="flex items-center gap-2">
-              <Mail size={18} className="text-accent/70" />
-              <span className="text-sm text-text">{t.contact.email}</span>
-              <motion.button
+              <Mail size={24} className="text-accent" />
+              <span className=" text-text">{t.contact.email}</span>
+              <button
                 type="button"
                 onClick={copyEmail}
-                className="rounded-lg p-1.5 text-text-muted transition-colors duration-300 hover:bg-accent-subtle hover:text-accent"
+                className="rounded-md p-1.5 text-text-muted transition-colors hover:bg-accent-subtle hover:text-accent"
                 aria-label="Copy email"
-                whileTap={{ scale: 0.9 }}
               >
                 {copied ? (
-                  <Check size={16} className="text-green-500" />
+                  <Check size={20} className="text-green-500" />
                 ) : (
-                  <Copy size={16} />
+                  <Copy size={20} />
                 )}
-              </motion.button>
+              </button>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-accent/70">
-                <LinkedInIcon fill-color="currentColor" size="18px" />
+              <span className=" text-accent">
+                <LinkedInIcon fill-color="currentColor" size="24px" />
               </span>
               <a
                 href="https://www.linkedin.com/in/giannicl/"
                 target="_blank"
                 rel="noreferrer"
-                className="text-sm inline-flex items-center transition-colors duration-300 hover:text-accent"
+                className="inline-flex items-center transition-colors hover:text-accent"
               >
                 LinkedIn
               </a>
@@ -155,10 +153,10 @@ export function Contact() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.2}>
+        <ScrollReveal delay={0.15}>
           <form
             onSubmit={handleSubmit}
-            className="mt-8 flex flex-col gap-4"
+            className="mt-10 flex flex-col gap-4"
             noValidate
           >
             <div className="grid gap-4 sm:grid-cols-2">
@@ -169,7 +167,7 @@ export function Contact() {
                   type="text"
                   name="name"
                   placeholder={t.contact.form.name}
-                  className="rounded-xl border border-border/60 bg-bg-card px-4 py-3 text-sm text-text-strong outline-none transition-all duration-300 placeholder:text-text-muted focus:border-accent focus:ring-2 focus:ring-accent/10"
+                  className="rounded-lg border border-border bg-bg-card px-4 py-2.5 text-sm text-text-strong outline-none transition-colors placeholder:text-text-muted focus:border-accent"
                 />
                 {errors.name && (
                   <p className="text-xs text-red-500">{errors.name}</p>
@@ -182,7 +180,7 @@ export function Contact() {
                   type="email"
                   name="email"
                   placeholder={t.contact.form.email}
-                  className="rounded-xl border border-border/60 bg-bg-card px-4 py-3 text-sm text-text-strong outline-none transition-all duration-300 placeholder:text-text-muted focus:border-accent focus:ring-2 focus:ring-accent/10"
+                  className="rounded-lg border border-border bg-bg-card px-4 py-2.5 text-sm text-text-strong outline-none transition-colors placeholder:text-text-muted focus:border-accent"
                 />
                 {errors.email && (
                   <p className="text-xs text-red-500">{errors.email}</p>
@@ -196,13 +194,13 @@ export function Contact() {
                 name="message"
                 rows={5}
                 placeholder={t.contact.form.message}
-                className="resize-none rounded-xl border border-border/60 bg-bg-card px-4 py-3 text-sm text-text-strong outline-none transition-all duration-300 placeholder:text-text-muted focus:border-accent focus:ring-2 focus:ring-accent/10"
+                className="resize-none rounded-lg border border-border bg-bg-card px-4 py-2.5 text-sm text-text-strong outline-none transition-colors placeholder:text-text-muted focus:border-accent"
               />
               {errors.message && (
                 <p className="text-xs text-red-500">{errors.message}</p>
               )}
             </div>
-            <Button type="submit" disabled={sending} className="self-start rounded-xl">
+            <Button type="submit" disabled={sending} className="self-start">
               <Send size={14} />
               {sending ? t.contact.form.sending : t.contact.form.submit}
             </Button>
