@@ -155,7 +155,9 @@ export function Contact() {
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="flex flex-col gap-1.5">
+              <label htmlFor="contact-name" className="sr-only">{t.contact.form.name}</label>
               <input
+                id="contact-name"
                 type="text"
                 name="name"
                 placeholder={t.contact.form.name}
@@ -166,7 +168,9 @@ export function Contact() {
               )}
             </div>
             <div className="flex flex-col gap-1.5">
+              <label htmlFor="contact-email" className="sr-only">{t.contact.form.email}</label>
               <input
+                id="contact-email"
                 type="email"
                 name="email"
                 placeholder={t.contact.form.email}
@@ -178,7 +182,9 @@ export function Contact() {
             </div>
           </div>
           <div className="flex flex-col gap-1.5">
+            <label htmlFor="contact-message" className="sr-only">{t.contact.form.message}</label>
             <textarea
+              id="contact-message"
               name="message"
               rows={5}
               placeholder={t.contact.form.message}

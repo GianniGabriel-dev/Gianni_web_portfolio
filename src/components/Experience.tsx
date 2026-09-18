@@ -11,7 +11,7 @@ export function Experience() {
         </h2>
 
         <div className="relative space-y-0">
-          <div className="absolute left-4.75 top-0 bottom-0 w-px bg-border" />
+          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-border" />
 
           {t.experience.items.map((item, i) => (
             <div key={i} className="relative flex gap-6 pb-10 last:pb-0">

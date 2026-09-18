@@ -2,7 +2,7 @@ export interface Project {
   /** Must match a key under `projects.items` in both src/i18n/en.ts and src/i18n/es.ts */
   id: string;
   image?: string;
-  images?: string[];
+  hoverImage?: string;
   tags: string[];
   github?: string;
   demo?: string;
@@ -12,7 +12,7 @@ export const projects: Project[] = [
   {
     id: "project-one",
     image: "/projects/project1/logo.png",
-    images:["/projects/project1/main.gif", "/projects/project1/auth.gif", "/projects/project1/erd.png"],
+    hoverImage: "/projects/project1/main.gif",
     tags: ["Express.js", "React", "TypeScript","PostgreSQL"],
     github: "https://github.com/yourname/project-one",
     demo: "https://project-one.example.com",

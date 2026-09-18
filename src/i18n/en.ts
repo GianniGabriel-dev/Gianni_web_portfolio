@@ -11,6 +11,8 @@ const en = {
     role: "Full-Stack web Developer",
     location: "Currently based in Alicante, Spain",
     bio: "Full-stack (TypeScript) developer specializing in backend with Express.js. Experienced in React and Next.js. Exploring cloud and DevOps.",
+    viewCv: "View CV",
+    downloadCv: "Download CV",
     cta_projects: "View projects",
     cta_contact: "Contact me",
     cta_resume: "Download Resume",

@@ -38,24 +38,23 @@ export function Navbar() {
             </a>
           </li>
           <li>
-            <a href="#projects" className="hover:text-accent transition-colors">
-              {t.nav.projects}
+            <a href="#tech-stack" className="hover:text-accent transition-colors">
+              {t.techStack.title}
             </a>
           </li>
           <li>
-            <a
-              href="#education"
-              className="hover:text-accent transition-colors"
-            >
+            <a href="#experience" className="hover:text-accent transition-colors">
+              {t.nav.experience}
+            </a>
+          </li>
+          <li>
+            <a href="#education" className="hover:text-accent transition-colors">
               {t.nav.education}
             </a>
           </li>
           <li>
-            <a
-              href="#experience"
-              className="hover:text-accent transition-colors"
-            >
-              {t.nav.experience}
+            <a href="#projects" className="hover:text-accent transition-colors">
+              {t.nav.projects}
             </a>
           </li>
           <li>

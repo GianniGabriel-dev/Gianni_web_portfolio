@@ -56,7 +56,7 @@ export function TechStack() {
   };
 
   return (
-    <section id="tech-stack" className="w-full mx-auto max-w-5xl py-16  px-6">
+    <section id="tech-stack" className="w-full mx-auto max-w-5xl py-20 px-6">
       <h2 className="text-3xl font-bold text-text-strong mb-10">{t.techStack.title}</h2>
 
 
@@ -83,6 +83,8 @@ export function TechStack() {
             <button
               key={type}
               onClick={() => setFilter(type)}
+              aria-pressed={filter === type}
+              aria-label={`${getFilterLabel(type)} (${counts[type]})`}
               className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
                 filter === type
                   ? "bg-accent-subtle text-accent border-accent"

@@ -59,7 +59,7 @@ export function Hero() {
               className="rounded-lg flex items-center justify-center gap-2 bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover transition-colors"
             >
               <Eye className="size-5" />
-              Ver CV
+              {t.hero.viewCv}
             </a>
 
             {/* CV */}
@@ -69,7 +69,7 @@ export function Hero() {
               className="rounded-lg flex items-center justify-center gap-2 bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover transition-colors"
             >
               <Download className="size-5" />
-              Descargar CV
+              {t.hero.downloadCv}
             </a>
 
             {/* GitHub */}

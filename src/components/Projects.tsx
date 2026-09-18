@@ -47,7 +47,10 @@ export function Projects() {
               return (
                 <div
                   key={project.id}
+                  role="button"
+                  tabIndex={0}
                   onClick={() => setActiveProject(project)}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setActiveProject(project); } }}
                   className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-bg-card transition-all hover:border-accent/50 hover:shadow-md md:flex-row"
                 >
                   {project.image && (
@@ -55,12 +58,16 @@ export function Projects() {
                       <img
                         src={project.image}
                         alt={copy?.title ?? project.id}
+                        loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
                       />
-                      {project.images && (
+                      {project.hoverImage && (
                         <img
-                          src={project.images[0]}
+                          src={project.hoverImage}
                           alt=""
+                          loading="lazy"
+                          decoding="async"
                           className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                         />
                       )}
