@@ -8,7 +8,7 @@ export function About() {
   return (
     <section id="about-me" className="section-spacing mx-auto max-w-6xl px-6">
       <ScrollReveal>
-        <div className="max-w-3xl">
+        <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold text-text-strong tracking-tight">{t.about.title}</h2>
           <div className="mt-8 space-y-5 text-base text-text leading-relaxed">
             {paragraphs.map((text, i) => (

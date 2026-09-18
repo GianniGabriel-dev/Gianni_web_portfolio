@@ -12,7 +12,7 @@ export function Hero() {
   return (
     <section
       id="about"
-      className="mx-auto flex max-md:flex-col max-md:py-16 items-center gap-12 max-w-6xl px-6 py-24"
+      className="mx-auto flex max-md:flex-col max-md:py-16 items-center justify-center gap-12 max-w-6xl px-6 py-24"
     >
       {/* Profile picture */}
       <ScrollReveal direction="left" className="shrink-0">
