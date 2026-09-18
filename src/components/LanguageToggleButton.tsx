@@ -10,10 +10,10 @@ export function LanguageToggleButton({ className }: { className?: string }) {
       aria-label="Toggle language"
       type="button"
       className={cn(
-        "flex items-center justify-center rounded-full border border-border-strong bg-bg-subtle cursor-pointer transition-colors hover:border-accent hover:text-accent text-text-strong text-xs font-semibold",
+        "flex items-center justify-center rounded-xl border border-border/60 bg-bg-subtle cursor-pointer transition-all duration-300 hover:border-accent/40 hover:text-accent text-text-strong text-xs font-semibold",
         className
       )}
-      style={{ width: 44, height: 44 }}
+      style={{ width: 40, height: 40 }}
     >
       {lang === "en" ? "ES" : "EN"}
     </button>
