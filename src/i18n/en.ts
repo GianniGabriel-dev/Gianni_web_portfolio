@@ -17,15 +17,21 @@ const en = {
     cta_contact: "Contact me",
     cta_resume: "Download Resume",
   },
-  about: {
-    title: "About me",
-    p1: "I'm a full stack developer with training in web development and over 3 years of self-taught experience building projects.",
-    p2: "I started with a more traditional foundation, but I've specialized in the modern JavaScript / TypeScript ecosystem, working with technologies like Node.js, React and Next.js.",
-    p3: "I'm especially interested in backend — I enjoy understanding how applications work from the inside.",
-    p4: "Currently I'm focused on continuing to grow in backend and moving towards cloud and DevOps, which is the direction I want to take my career.",
-    p5: "When I'm not coding or learning, I like to play videogames, spend time with family/friends, exercise, and watch movies and anime 🎥.",
-    skillsTitle: "Technologies",
-  },
+about: {
+  title: "About Me",
+
+  p1: "I'm a full-stack developer specialized in the modern JavaScript and TypeScript ecosystem, with over 3 years of self-taught experience building projects.",
+
+  p2: "I mainly work with technologies like Node.js, React, and Next.js, building complete and scalable web applications.",
+
+  p3: "My main focus and passion lie in backend development. I enjoy understanding the internal architecture of applications, optimizing performance, and building robust APIs.",
+
+  p4: "I am currently expanding my knowledge in Cloud and DevOps, aiming to keep growing as a full-stack developer with a strong backend orientation.",
+
+  p5: "Outside of coding, I stay active studying Japanese and exploring advancements in AI. In my free time, I also enjoy gaming and working out.",
+
+  skillsTitle: "Technologies",
+},
   techStack: {
     title: "Tech Stack",
     filterLabel: "Filter by category:",
@@ -40,7 +46,7 @@ const en = {
     title: "Projects",
     empty: "Projects coming soon.",
     viewCode: "View code",
-    viewDemo: "Live demo",
+    viewDemo: "View website",
     viewMore: "View more",
     // Keyed by Project.id from src/lib/projects.ts — add one entry per project.
     // `description` is the short blurb always shown on the card.
@@ -49,38 +55,44 @@ const en = {
       "project-one": {
         title: "PingUp",
         description:
-          "Full-stack social media platform inspired by Twitter/X with AI integrations for sentiment analysis and translation of posts, infinite scroll, media handling, typical social interactions like likes, comments and follows, and a notification system.",
+          "FullStack social media platform inspired by Twitter/X with AI integrations for sentiment analysis and automatic translation, infinite scroll, multimedia content, and social interactions.",
         details: [
-          "SPA built with React + TypeScript on the frontend and Express.js + Prisma + PostgreSQL on the backend. Implements JWT authentication, cursor-based pagination, and TanStack Query for caching and infinite scrolling.",
-          "Features include post creation with image/video support, client-side image cropping, likes, comments, follows, and a notification system. Integrates Google Cloud Translation API with a database-backed translation cache and Google NLP for AI sentiment filtering on the main feed.",
-          "User profiles support editable avatars and banners uploaded to Cloudinary. The feed system offers chronological, following-only, and sentiment-filtered views. Frontend validated with Zod, backend with Express Validator.",
+          "SPA built with React + TypeScript on the frontend and Express.js + Prisma + PostgreSQL on the backend. Implements JWT and Google OAuth authentication, cursor-based pagination, TanStack Query for caching and infinite scrolling, and request validation with Zod and Express Validator.",
+          "Features include post creation with image/video support through Cloudinary, likes, comments, follows, reposts, notifications, user search with debounce, and optimistic UI updates. The feed supports chronological, following-only, and sentiment-filtered views.",
+          "Integrates Google Cloud Natural Language for automatic sentiment analysis and Google Cloud Translation for multilingual content. Translations are cached in the database to avoid repeated API requests, while unsupported languages are translated to English before sentiment analysis.",
+        ],
+        sections: [
+          { title: "Entity-Relationship Model" },
+          { title: "Authentication Process" },
         ],
       },
+
       "project-two": {
-        title: "Project two",
-        description: "Short description of project two.",
+        title: "Cerrajerocasi24h",
+        description:
+          "Website for a locksmith business, developed during my internship with Next.js and TypeScript, focused on customer acquisition, local SEO, and dynamic content tailored to different cities.",
         details: [
-          "Longer description of project two.",
-          "Additional details about project two.",
-        ],
-      },
-      "project-three": {
-        title: "Project three",
-        description: "Short description of project three.",
-        details: [
-          "Longer description of project three.",
-          "Additional details about project three.",
+          "Migrated and developed the website from WordPress to Next.js (React) + TypeScript, using Tailwind CSS and reusable components to build a landing page focused on customer acquisition.",
+          "Implemented a local SEO strategy through dedicated pages for different cities in the Vega Baja area, with city-specific metadata, headings, Schema Markup, and localized content.",
+          "The pages use dynamic data such as city maps, estimated locksmith arrival times, service areas, and location-specific text. Elements such as FAQs are also adapted to provide relevant content for each city.",
+          "Implemented internal links between the different city pages to improve navigation and internal linking structure, alongside optimizations focused on performance and user experience.",
         ],
       },
     } as Record<
       string,
-      { title: string; description: string; details?: string[] }
+      {
+        title: string;
+        description: string;
+        details?: string[];
+        sections?: { title: string }[];
+      }
     >,
   },
   contact: {
     title: "Get in touch",
     bio: "Open to new opportunities — reach out anytime.",
     email: "clondireanug@gmail.com",
+    emailCopied: "Email copied to clipboard",
     linkedin: "LinkedIn",
     form: {
       name: "Your name",
@@ -103,8 +115,9 @@ const en = {
         role: "Frontend Web Developer & SEO Analyst",
         company: "Cerrajerocasi24h",
         period: "March 2, 2026 - June 5, 2026",
-        description: "During my professional internship, I migrated the website from WordPress to Next.js and Tailwind CSS, improving page load speed and overall performance by 60%, while also optimizing its technical structure and local SEO. These improvements contributed to a 94% increase in impressions and a 31% increase in organic clicks on the main page.",
-        tags: ["Next.js", "React", "TypeScript", "Tailwind"],
+        description:
+          "During my internship, I independently managed the development and migration of the website from WordPress to Next.js and Tailwind CSS, improving loading speed and overall performance by 60%, while also optimizing its technical structure and local SEO. These improvements contributed to a 94% increase in impressions and a 31% increase in organic clicks on the main page. I communicated directly with the client to understand their needs, propose improvements, and adapt the design and functionality to their preferences.",
+        tags: ["Next.js", "React", "TypeScript", "Tailwind", "SEO"],
       },
     ] as {
       role: string;

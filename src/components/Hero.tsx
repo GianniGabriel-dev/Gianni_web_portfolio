@@ -45,7 +45,7 @@ export function Hero() {
                 className="text-accent"
               />
             </h1>
-            <p className="mt-3 text-2xl font-semibold text-accent md:text-3xl">
+            <p className="mt-3 text-3xl font-semibold text-accent md:text-3xl">
               <TypingEffect text={t.hero.role} speed={60} />
             </p>
             <p className="mt-2 flex items-center gap-2 text-sm text-text-muted">

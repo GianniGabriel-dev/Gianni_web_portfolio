@@ -14,7 +14,7 @@ export function Experience() {
         </ScrollReveal>
 
         <div className="relative space-y-0">
-          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-border" />
+          <div className="absolute left-4.75 top-0 bottom-0 w-px bg-border" />
 
           {t.experience.items.map((item, i) => (
             <ScrollReveal key={i} delay={i * 0.1}>

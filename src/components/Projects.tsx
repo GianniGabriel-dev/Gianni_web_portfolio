@@ -7,8 +7,6 @@ import { ScrollReveal } from "./ScrollReveal";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
@@ -126,27 +124,48 @@ export function Projects() {
         open={activeProject !== null}
         onOpenChange={(open) => !open && setActiveProject(null)}
       >
-        <DialogContent className="sm:max-w-2xl">
+        <DialogContent className="sm:max-w-4xl" header={
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-black text-text-strong">
+              {activeCopy?.title ?? activeProject?.id}
+            </DialogTitle>
+          </DialogHeader>
+        } footer={
+          activeProject && (activeProject.github || activeProject.demo) ? (
+            <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+              {activeProject.github && (
+                <Button variant="outline" asChild>
+                  <a href={activeProject.github} target="_blank" rel="noreferrer">
+                    <SiGithub size={16} />
+                    {t.projects.viewCode}
+                  </a>
+                </Button>
+              )}
+              {activeProject.demo && (
+                <Button asChild>
+                  <a href={activeProject.demo} target="_blank" rel="noreferrer">
+                    <ExternalLink size={16} />
+                    {t.projects.viewDemo}
+                  </a>
+                </Button>
+              )}
+            </div>
+          ) : undefined
+        }>
           {activeProject && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-xl">
-                  {activeCopy?.title ?? activeProject.id}
-                </DialogTitle>
-                <DialogDescription>{activeCopy?.description}</DialogDescription>
-              </DialogHeader>
+            <div className="space-y-4">
 
               {activeProject.image && (
-                <div className="overflow-hidden rounded-xl">
+                <div className="overflow-hidden rounded-xl mt-2 ">
                   <img
-                    src={activeProject.image}
+                    src={activeProject.hoverImage}
                     alt={activeCopy?.title ?? activeProject.id}
                     className="w-full"
                   />
                 </div>
               )}
 
-              <div className="space-y-4 text-sm leading-relaxed text-text">
+              <div className="space-y-4  text-sm leading-relaxed text-text">
                 {(activeCopy?.details?.length
                   ? activeCopy.details
                   : activeCopy?.description
@@ -159,27 +178,24 @@ export function Projects() {
 
               <Tags tags={activeProject.tags} />
 
-              {(activeProject.github || activeProject.demo) && (
-                <DialogFooter>
-                  {activeProject.github && (
-                    <Button variant="outline" asChild>
-                      <a href={activeProject.github} target="_blank" rel="noreferrer">
-                        <SiGithub size={16} />
-                        {t.projects.viewCode}
-                      </a>
-                    </Button>
-                  )}
-                  {activeProject.demo && (
-                    <Button asChild>
-                      <a href={activeProject.demo} target="_blank" rel="noreferrer">
-                        <ExternalLink size={16} />
-                        {t.projects.viewDemo}
-                      </a>
-                    </Button>
-                  )}
-                </DialogFooter>
-              )}
-            </>
+              {activeProject.sections?.map((section, i) => {
+                const translated = activeCopy?.sections?.[i];
+                return (
+                  <div key={i} className="space-y-2">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+                      {translated?.title ?? ""}
+                    </p>
+                    <div className="overflow-hidden rounded-xl border border-border">
+                      <img
+                        src={section.src}
+                        alt={section.alt ?? translated?.title ?? ""}
+                        className="w-full"
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           )}
         </DialogContent>
       </Dialog>

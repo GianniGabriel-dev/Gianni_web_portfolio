@@ -18,6 +18,7 @@ export function Contact() {
 
   const copyEmail = async () => {
     await navigator.clipboard.writeText(t.contact.email);
+    toast.success(t.contact.emailCopied);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
