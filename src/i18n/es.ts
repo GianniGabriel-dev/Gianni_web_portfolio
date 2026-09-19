@@ -8,11 +8,12 @@ const es = {
   },
   hero: {
     greeting: "Hola, soy",
-    role: "Desarrollador web Full-Stack",
+    role: "Desarrollador Full-Stack",
     location: "Actualmente ubicado en Alicante, España",
     bio: "Desarrollador full-stack (TypeScript) especializado en backend con Express.js. Experiencia en React y Next.js. Explorando cloud y DevOps.",
     viewCv: "Ver CV",
     downloadCv: "Descargar CV",
+    cvLink:"/Gianni_Gabriel_Clondireanu_CV.pdf",
     cta_projects: "Ver proyectos",
     cta_contact: "Contáctame",
     cta_resume: "Descargar currículum",

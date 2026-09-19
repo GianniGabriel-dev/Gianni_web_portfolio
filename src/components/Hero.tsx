@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <section
       id="about"
-      className="mx-auto flex max-md:flex-col max-md:py-12 items-center gap-6 max-w-5xl px-6 py-16 "
+      className="mx-auto flex max-md:flex-col max-md:py-12 items-center justify-center gap-15 max-w-5xl px-6 py-16 "
     >
       {/* Profile picture */}
       <ScrollReveal direction="left" className="shrink-0">
@@ -59,7 +59,7 @@ export function Hero() {
             <div className="grid grid-cols-2 gap-3 max-md:grid-cols-1">
               {/* CV view */}
               <a
-                href="/cv.pdf"
+                href={t.hero.cvLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-lg flex items-center justify-center gap-2 bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover transition-colors"
@@ -70,7 +70,7 @@ export function Hero() {
 
               {/* CV */}
               <a
-                href="/cv.pdf"
+                href={t.hero.cvLink}
                 download
                 className="rounded-lg flex items-center justify-center gap-2 bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover transition-colors"
               >
