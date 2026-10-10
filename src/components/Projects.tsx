@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { useLanguage } from "../context/LanguageContext";
@@ -31,6 +31,25 @@ export function Projects() {
   const { t } = useLanguage();
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const activeCopy = activeProject ? t.projects.items[activeProject.id] : undefined;
+  const previewRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+
+  const playPreview = (id: string) => {
+    const video = previewRefs.current[id];
+    if (video) void video.play().catch(() => {});
+  };
+
+  const stopPreview = (id: string) => {
+    const video = previewRefs.current[id];
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  };
+
+  const openProject = (project: Project) => {
+    stopPreview(project.id);
+    setActiveProject(project);
+  };
 
   return (
     <section id="projects" className="py-20">
@@ -50,8 +69,10 @@ export function Projects() {
                   <div
                     role="button"
                     tabIndex={0}
-                    onClick={() => setActiveProject(project)}
-                    onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setActiveProject(project); } }}
+                    onClick={() => openProject(project)}
+                    onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openProject(project); } }}
+                    onPointerEnter={() => playPreview(project.id)}
+                    onPointerLeave={() => stopPreview(project.id)}
                     className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-bg-card transition-all hover:border-accent/50 hover:shadow-md md:flex-row"
                   >
                     {project.image && (
@@ -63,12 +84,17 @@ export function Projects() {
                           decoding="async"
                           className="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
                         />
-                        {project.hoverImage && (
-                          <img
-                            src={project.hoverImage}
-                            alt=""
-                            loading="lazy"
-                            decoding="async"
+                        {project.preview && (
+                          <video
+                            ref={(el) => { previewRefs.current[project.id] = el; }}
+                            src={project.preview.src}
+                            poster={project.preview.poster}
+                            muted
+                            loop
+                            playsInline
+                            preload="none"
+                            aria-hidden="true"
+                            tabIndex={-1}
                             className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                           />
                         )}
@@ -104,7 +130,7 @@ export function Projects() {
                         )}
                         <button
                           type="button"
-                          onClick={() => setActiveProject(project)}
+                          onClick={() => openProject(project)}
                           className="ml-auto inline-flex items-center gap-1 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
                         >
                           {t.projects.viewMore}
@@ -155,11 +181,16 @@ export function Projects() {
           {activeProject && (
             <div className="space-y-4">
 
-              {activeProject.image && (
+              {activeProject.preview && (
                 <div className="overflow-hidden rounded-xl mt-2 ">
-                  <img
-                    src={activeProject.hoverImage}
-                    alt={activeCopy?.title ?? activeProject.id}
+                  <video
+                    src={activeProject.preview.src}
+                    poster={activeProject.preview.poster}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    aria-label={activeCopy?.title ?? activeProject.id}
                     className="w-full"
                   />
                 </div>
@@ -186,11 +217,26 @@ export function Projects() {
                       {translated?.title ?? ""}
                     </p>
                     <div className="overflow-hidden rounded-xl border border-border">
-                      <img
-                        src={section.src}
-                        alt={section.alt ?? translated?.title ?? ""}
-                        className="w-full"
-                      />
+                      {section.video ? (
+                        <video
+                          src={section.video.src}
+                          poster={section.video.poster}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          aria-label={section.alt ?? translated?.title ?? ""}
+                          className="w-full"
+                        />
+                      ) : (
+                        <img
+                          src={section.image}
+                          alt={section.alt ?? translated?.title ?? ""}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full"
+                        />
+                      )}
                     </div>
                   </div>
                 );
