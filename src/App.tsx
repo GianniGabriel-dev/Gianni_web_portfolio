@@ -10,7 +10,7 @@ import { Projects } from "./components/Projects";
 import { Contact } from "./components/Contact";
 import { Toaster } from "sonner";
 import { ScrollToTop } from "./components/ScrollToTop";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
