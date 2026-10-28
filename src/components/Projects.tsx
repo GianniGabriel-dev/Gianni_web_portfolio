@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { useLanguage } from "../context/LanguageContext";
-import { projects, type Project } from "../lib/projects";
+import { projects, type MediaVideo, type Project, type ProjectSection } from "../lib/projects";
+import { cn } from "../lib/utils";
 import { ScrollReveal } from "./ScrollReveal";
 import {
   Dialog,
@@ -11,6 +12,70 @@ import {
   DialogTitle,
 } from "./ui/dialog";
 import { Button } from "./ui/button";
+import { Skeleton } from "./ui/skeleton";
+
+function DialogPreviewVideo({ preview, label }: { preview: MediaVideo; label?: string }) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div className="relative mt-2 aspect-video overflow-hidden rounded-xl">
+      {!loaded && <Skeleton className="absolute inset-0 z-10 rounded-xl" />}
+      <video
+        src={preview.src}
+        poster={preview.poster}
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-label={label}
+        onLoadedData={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+        className={cn(
+          "h-full w-full object-cover transition-opacity duration-500",
+          loaded ? "opacity-100" : "opacity-0",
+        )}
+      />
+    </div>
+  );
+}
+
+function DialogSectionMedia({ section, label }: { section: ProjectSection; label?: string }) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div className="relative aspect-video overflow-hidden rounded-xl border border-border">
+      {!loaded && <Skeleton className="absolute inset-0 z-10 rounded-none" />}
+      {section.video ? (
+        <video
+          src={section.video.src}
+          poster={section.video.poster}
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-label={section.alt ?? label}
+          onLoadedData={() => setLoaded(true)}
+          onError={() => setLoaded(true)}
+          className={cn(
+            "h-full w-full object-cover transition-opacity duration-500",
+            loaded ? "opacity-100" : "opacity-0",
+          )}
+        />
+      ) : (
+        <img
+          src={section.image}
+          alt={section.alt ?? label ?? ""}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(true)}
+          className={cn(
+            "h-full w-full object-cover transition-opacity duration-500",
+            loaded ? "opacity-100" : "opacity-0",
+          )}
+        />
+      )}
+    </div>
+  );
+}
 
 function Tags({ tags }: { tags: string[] }) {
   return (
@@ -30,8 +95,72 @@ function Tags({ tags }: { tags: string[] }) {
 export function Projects() {
   const { t } = useLanguage();
   const [activeProject, setActiveProject] = useState<Project | null>(null);
+  const [loadedCards, setLoadedCards] = useState<Record<string, boolean>>({});
   const activeCopy = activeProject ? t.projects.items[activeProject.id] : undefined;
   const previewRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+
+  useEffect(() => {
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    if (connection?.saveData) return;
+
+    const posters = new Set<string>();
+    const videos = new Set<string>();
+    for (const project of projects) {
+      if (project.preview) {
+        posters.add(project.preview.poster);
+        videos.add(project.preview.src);
+      }
+      for (const section of project.sections ?? []) {
+        if (section.video) {
+          posters.add(section.video.poster);
+          videos.add(section.video.src);
+        } else if (section.image) {
+          posters.add(section.image);
+        }
+      }
+    }
+
+    const nodes: HTMLElement[] = [];
+    let cancelled = false;
+
+    const preload = () => {
+      if (cancelled) return;
+      posters.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+      videos.forEach((src) => {
+        const video = document.createElement("video");
+        video.preload = "auto";
+        video.muted = true;
+        video.src = src;
+        video.setAttribute("aria-hidden", "true");
+        video.tabIndex = -1;
+        video.style.cssText = "position:fixed;left:-9999px;width:0;height:0;opacity:0;pointer-events:none";
+        video.addEventListener("canplaythrough", () => video.remove(), { once: true });
+        document.body.appendChild(video);
+        nodes.push(video);
+      });
+    };
+
+    // Esperar a que la página termine de cargar y a que el navegador esté idle
+    const start = () => {
+      const requestIdle = (window as unknown as {
+        requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number;
+      }).requestIdleCallback;
+      if (requestIdle) requestIdle(preload, { timeout: 4000 });
+      else window.setTimeout(preload, 1500);
+    };
+
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener("load", start);
+      nodes.forEach((node) => node.remove());
+    };
+  }, []);
 
   const playPreview = (id: string) => {
     const video = previewRefs.current[id];
@@ -76,13 +205,21 @@ export function Projects() {
                     className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-bg-card transition-all hover:border-accent/50 hover:shadow-md md:flex-row"
                   >
                     {project.image && (
-                      <div className="relative w-full shrink-0 overflow-hidden md:w-99">
+                      <div className="relative aspect-[550/336] w-full shrink-0 overflow-hidden md:aspect-auto md:w-99">
+                        {!loadedCards[project.id] && (
+                          <Skeleton className="absolute inset-0 z-10 rounded-none" />
+                        )}
                         <img
                           src={project.image}
                           alt={copy?.title ?? project.id}
                           loading="lazy"
                           decoding="async"
-                          className="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
+                          onLoad={() => setLoadedCards((prev) => ({ ...prev, [project.id]: true }))}
+                          onError={() => setLoadedCards((prev) => ({ ...prev, [project.id]: true }))}
+                          className={cn(
+                            "h-full w-full object-cover transition-opacity duration-500",
+                            loadedCards[project.id] ? "opacity-100 group-hover:opacity-0" : "opacity-0",
+                          )}
                         />
                         {project.preview && (
                           <video
@@ -182,18 +319,11 @@ export function Projects() {
             <div className="space-y-4">
 
               {activeProject.preview && (
-                <div className="overflow-hidden rounded-xl mt-2 ">
-                  <video
-                    src={activeProject.preview.src}
-                    poster={activeProject.preview.poster}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    aria-label={activeCopy?.title ?? activeProject.id}
-                    className="w-full"
-                  />
-                </div>
+                <DialogPreviewVideo
+                  key={activeProject.id}
+                  preview={activeProject.preview}
+                  label={activeCopy?.title ?? activeProject.id}
+                />
               )}
 
               <div className="space-y-4  text-sm leading-relaxed text-text">
@@ -216,28 +346,11 @@ export function Projects() {
                     <p className="text-xs font-semibold uppercase tracking-wider text-text-muted">
                       {translated?.title ?? ""}
                     </p>
-                    <div className="overflow-hidden rounded-xl border border-border">
-                      {section.video ? (
-                        <video
-                          src={section.video.src}
-                          poster={section.video.poster}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          aria-label={section.alt ?? translated?.title ?? ""}
-                          className="w-full"
-                        />
-                      ) : (
-                        <img
-                          src={section.image}
-                          alt={section.alt ?? translated?.title ?? ""}
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full"
-                        />
-                      )}
-                    </div>
+                    <DialogSectionMedia
+                      key={`${activeProject.id}-${i}`}
+                      section={section}
+                      label={translated?.title}
+                    />
                   </div>
                 );
               })}

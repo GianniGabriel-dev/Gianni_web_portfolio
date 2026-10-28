@@ -1,12 +1,16 @@
+import { useState } from "react";
 import { Download, Eye, LocateFixed } from "lucide-react";
 import { LinkedInIcon } from "../assets/linkedinIcon.tsx";
 import { useLanguage } from "../context/LanguageContext";
 import { TypingEffect } from "./TypingEffect";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { ScrollReveal } from "./ScrollReveal";
+import { Skeleton } from "./ui/skeleton";
+import { cn } from "../lib/utils";
 
 export function Hero() {
   const { t } = useLanguage();
+  const [photoLoaded, setPhotoLoaded] = useState(false);
 
   return (
     <section
@@ -16,16 +20,24 @@ export function Hero() {
       {/* Profile picture */}
       <ScrollReveal direction="left" className="shrink-0">
         <div className="relative mx-auto w-fit">
-          <div className="mx-auto size-60 max-md:size-50 rounded-full overflow-hidden ring-4 ring-accent/30 ring-offset-4 ring-offset-color-bg">
+          <div className="relative mx-auto size-60 max-md:size-50 rounded-full overflow-hidden ring-4 ring-accent/30 ring-offset-4 ring-offset-color-bg">
+            {!photoLoaded && (
+              <Skeleton className="absolute inset-0 rounded-full" />
+            )}
             <img
               src="/profileb.JPG"
               alt="Gianni Gabriel"
-              className="size-full object-cover"
+              onLoad={() => setPhotoLoaded(true)}
               onError={(e) => {
+                setPhotoLoaded(true);
                 const t = e.currentTarget;
                 t.style.display = "none";
                 t.parentElement!.classList.add("profile-placeholder");
               }}
+              className={cn(
+                "size-full object-cover transition-opacity duration-500",
+                photoLoaded ? "opacity-100" : "opacity-0",
+              )}
             />
           </div>
           <div className="absolute -bottom-2 -right-2 bg-accent rounded-full px-3 py-1 flex items-center gap-1.5 text-white text-xs font-medium ring-4 ring-color-bg">
